@@ -4,7 +4,7 @@ import { prisma } from "@/lib/prisma";
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticRoutes = ["", "/produtos", "/a-vesta", "/diario", "/contato"].map((path) => ({
+  const staticRoutes = ["", "/produtos", "/sobre", "/contato"].map((path) => ({
     url: `${siteUrl}${path || "/"}`,
     lastModified: new Date(),
   }));

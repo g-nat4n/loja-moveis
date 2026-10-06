@@ -1,21 +1,20 @@
-export const APP_NAME = "Vesta Moda Pre-Owned";
-export const APP_TAGLINE = "Moda pre-owned com curadoria e presença.";
+export const APP_NAME = "Morada Móveis";
+export const APP_TAGLINE = "Móveis com presença para o espaço que você vive.";
 
 export const NAV_LINKS = [
   { href: "/", label: "Início" },
-  { href: "/a-vesta", label: "A Vesta" },
-  { href: "/produtos", label: "Curadoria" },
+  { href: "/sobre", label: "Sobre" },
+  { href: "/produtos", label: "Móveis" },
   { href: "/#categorias", label: "Categorias" },
-  { href: "/diario", label: "Diário Vesta" },
   { href: "/contato", label: "Contato" },
 ] as const;
 
 export const CONDITION_LABELS = {
-  NEW_WITH_TAG: "Novo com etiqueta",
+  NEW_WITH_TAG: "Novo",
   EXCELLENT: "Excelente",
   VERY_GOOD: "Muito bom",
   GOOD: "Bom",
-  VINTAGE: "Vintage",
+  VINTAGE: "Retrô",
 } as const;
 
 export const PRODUCT_STATUS_LABELS = {

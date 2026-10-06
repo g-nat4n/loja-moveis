@@ -26,9 +26,25 @@ export type CatalogFilters = {
   min?: number;
   max?: number;
   sort?: "recent" | "price-asc" | "price-desc" | "name";
+  spaceWidth?: number;
+  spaceHeight?: number;
+  spaceDepth?: number;
+  fitMode?: "single" | "combo";
 };
 
-export async function listPublicProducts(filters: CatalogFilters = {}) {
+export type CatalogProduct = Prisma.ProductGetPayload<{
+  include: { images: true; category: true };
+}>;
+
+export type SpaceCombination = {
+  id: string;
+  items: CatalogProduct[];
+  totalWidthCm: number;
+  totalPriceCents: number;
+  leftoverWidthCm: number | null;
+};
+
+function buildCatalogWhere(filters: CatalogFilters, options?: { ignoreSpaceWidth?: boolean }): Prisma.ProductWhereInput {
   const where: Prisma.ProductWhereInput = {};
 
   if (filters.availability === "sold") {
@@ -58,6 +74,16 @@ export async function listPublicProducts(filters: CatalogFilters = {}) {
     };
   }
 
+  if (!options?.ignoreSpaceWidth && filters.spaceWidth) where.widthCm = { lte: filters.spaceWidth };
+  if (filters.spaceHeight) where.heightCm = { lte: filters.spaceHeight };
+  if (filters.spaceDepth) where.depthCm = { lte: filters.spaceDepth };
+
+  return where;
+}
+
+export async function listPublicProducts(filters: CatalogFilters = {}) {
+  const where = buildCatalogWhere(filters);
+
   const orderBy: Prisma.ProductOrderByWithRelationInput =
     filters.sort === "price-asc"
       ? { priceCents: "asc" }
@@ -75,6 +101,73 @@ export async function listPublicProducts(filters: CatalogFilters = {}) {
     },
     orderBy,
   });
+}
+
+/**
+ * Combinações de 2–3 móveis lado a lado cuja soma das larguras cabe no espaço.
+ * Cada peça ainda precisa caber em profundidade e altura.
+ */
+export async function findSpaceCombinations(filters: CatalogFilters, limit = 12): Promise<SpaceCombination[]> {
+  const spaceWidth = filters.spaceWidth;
+  if (!spaceWidth) return [];
+
+  const candidates = await prisma.product.findMany({
+    where: buildCatalogWhere(filters, { ignoreSpaceWidth: true }),
+    include: {
+      images: { orderBy: { sortOrder: "asc" }, take: 1 },
+      category: true,
+    },
+    orderBy: { widthCm: "asc" },
+    take: 40,
+  });
+
+  // Cada peça sozinha precisa caber na largura total (não pode ser maior que o vão)
+  const pool = candidates.filter((item) => item.widthCm <= spaceWidth);
+  const combos: SpaceCombination[] = [];
+
+  for (let i = 0; i < pool.length; i++) {
+    for (let j = i + 1; j < pool.length; j++) {
+      const a = pool[i];
+      const b = pool[j];
+      const totalWidthCm = a.widthCm + b.widthCm;
+      if (totalWidthCm > spaceWidth) continue;
+      combos.push({
+        id: `${a.id}+${b.id}`,
+        items: [a, b],
+        totalWidthCm,
+        totalPriceCents: a.priceCents + b.priceCents,
+        leftoverWidthCm: Math.round((spaceWidth - totalWidthCm) * 10) / 10,
+      });
+    }
+  }
+
+  for (let i = 0; i < pool.length; i++) {
+    for (let j = i + 1; j < pool.length; j++) {
+      for (let k = j + 1; k < pool.length; k++) {
+        const a = pool[i];
+        const b = pool[j];
+        const c = pool[k];
+        const totalWidthCm = a.widthCm + b.widthCm + c.widthCm;
+        if (totalWidthCm > spaceWidth) continue;
+        combos.push({
+          id: `${a.id}+${b.id}+${c.id}`,
+          items: [a, b, c],
+          totalWidthCm,
+          totalPriceCents: a.priceCents + b.priceCents + c.priceCents,
+          leftoverWidthCm: Math.round((spaceWidth - totalWidthCm) * 10) / 10,
+        });
+      }
+    }
+  }
+
+  return combos
+    .sort((left, right) => {
+      const leftGap = left.leftoverWidthCm ?? spaceWidth;
+      const rightGap = right.leftoverWidthCm ?? spaceWidth;
+      if (leftGap !== rightGap) return leftGap - rightGap;
+      return left.totalPriceCents - right.totalPriceCents;
+    })
+    .slice(0, limit);
 }
 
 export async function getProductBySlug(slug: string) {
@@ -196,6 +289,9 @@ export async function upsertProduct(input: ProductFormInput, id?: string) {
     size: input.size,
     color: input.color,
     condition: input.condition,
+    widthCm: input.widthCm,
+    heightCm: input.heightCm,
+    depthCm: input.depthCm,
     priceCents: input.priceCents,
     compareAtCents: input.compareAtCents ?? null,
     stock: input.stock,
@@ -205,7 +301,11 @@ export async function upsertProduct(input: ProductFormInput, id?: string) {
     material: input.material,
     categoryId: input.categoryId,
     lookId: input.lookId || null,
-    measurements: input.measurements ?? Prisma.JsonNull,
+    measurements: input.measurements ?? {
+      width: `${input.widthCm} cm`,
+      height: `${input.heightCm} cm`,
+      depth: `${input.depthCm} cm`,
+    },
   };
 
   if (id) {
@@ -274,7 +374,7 @@ export async function deleteProductImage(id: string) {
 export async function deleteProduct(id: string) {
   const inOrders = await prisma.orderItem.count({ where: { productId: id } });
   if (inOrders > 0) {
-    throw new Error("Esta peça já entrou em um pedido. Arquive em vez de excluir.");
+    throw new Error("Este móvel já entrou em um pedido. Arquive em vez de excluir.");
   }
   return prisma.product.delete({ where: { id } });
 }

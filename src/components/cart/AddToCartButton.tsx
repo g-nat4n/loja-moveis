@@ -19,7 +19,7 @@ export function AddToCartButton({
 
   if (sold || item.stock <= 0) {
     return (
-      <p className="text-sm uppercase tracking-[0.18em] text-wine">Peça vendida</p>
+      <p className="text-sm uppercase tracking-[0.18em] text-taupe">Móvel vendido</p>
     );
   }
 

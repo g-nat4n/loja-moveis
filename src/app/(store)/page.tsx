@@ -1,17 +1,20 @@
 import { StoreShell } from "@/components/layout/StoreShell";
 import { Hero } from "@/components/home/Hero";
+import { TrustBar } from "@/components/home/TrustBar";
 import { Manifesto } from "@/components/home/Manifesto";
-import { CategoryChips, ContactBand, EditorialLook, JournalTeaser } from "@/components/home/Sections";
+import { CategoryTiles } from "@/components/home/CategoryTiles";
+import { ContactBand, EditorialLook } from "@/components/home/Sections";
 import { FeaturedCuradoria } from "@/components/home/FeaturedCuradoria";
+import { FurnitureShowcase } from "@/components/home/FurnitureShowcase";
 import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { getProductsBySlugs } from "@/services/product.service";
 import { FEATURED_PIECES } from "@/lib/brand";
 import { createMetadata } from "@/lib/seo";
+import { APP_NAME, APP_TAGLINE } from "@/lib/constants";
 
 export const metadata = createMetadata({
-  title: "Vesta Moda Pre-Owned",
-  description:
-    "Curadoria de peças especiais para todos os estilos, histórias e formas de se expressar.",
+  title: APP_NAME,
+  description: APP_TAGLINE,
   path: "/",
 });
 
@@ -43,12 +46,13 @@ export default async function HomePage() {
   return (
     <StoreShell>
       <Hero />
-      <Manifesto />
+      <TrustBar />
       <FeaturedCuradoria products={cards} />
-      <CategoryChips />
+      <CategoryTiles />
+      <Manifesto />
       <EditorialLook />
       <TestimonialsCarousel />
-      <JournalTeaser />
+      <FurnitureShowcase />
       <ContactBand />
     </StoreShell>
   );

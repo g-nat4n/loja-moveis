@@ -1,16 +1,16 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: vesta-postgres
+    container_name: morada-postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: vesta
-      POSTGRES_PASSWORD: vesta
-      POSTGRES_DB: vesta
+      POSTGRES_USER: morada
+      POSTGRES_PASSWORD: morada
+      POSTGRES_DB: morada
     ports:
-      - "55432:5432"
+      - "55433:5432"
     volumes:
-      - vesta_pg:/var/lib/postgresql/data
+      - morada_pg:/var/lib/postgresql/data
 
 volumes:
-  vesta_pg:
+  morada_pg:

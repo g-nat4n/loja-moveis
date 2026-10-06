@@ -135,6 +135,9 @@ model Product {
   size         String
   color        String
   condition    ProductCondition @default(EXCELLENT)
+  widthCm      Float
+  heightCm     Float
+  depthCm      Float
   measurements Json?
   priceCents   Int
   compareAtCents Int?

@@ -73,16 +73,25 @@ export const productFilterSchema = z.object({
   min: z.coerce.number().optional(),
   max: z.coerce.number().optional(),
   sort: z.enum(["recent", "price-asc", "price-desc", "name"]).optional(),
+  /** Espaço disponível em casa (cm) — retorna móveis que cabem */
+  spaceWidth: z.coerce.number().positive().optional(),
+  spaceHeight: z.coerce.number().positive().optional(),
+  spaceDepth: z.coerce.number().positive().optional(),
+  /** single = 1 móvel | combo = soma de 2+ móveis lado a lado */
+  fitMode: z.enum(["single", "combo"]).optional(),
 });
 
 export const productFormSchema = z.object({
-  name: z.string().min(2, "Informe o nome da peça"),
-  description: z.string().min(3, "Escreva uma descrição da peça"),
+  name: z.string().min(2, "Informe o nome do móvel"),
+  description: z.string().min(3, "Escreva uma descrição do móvel"),
   story: z.string().optional(),
   brand: z.string().min(1, "Informe a marca"),
-  size: z.string().min(1, "Informe o tamanho"),
+  size: z.string().min(1, "Informe o porte (ex.: Compacto, Médio, Grande)"),
   color: z.string().min(1, "Informe a cor"),
   condition: z.enum(["NEW_WITH_TAG", "EXCELLENT", "VERY_GOOD", "GOOD", "VINTAGE"]),
+  widthCm: z.coerce.number({ invalid_type_error: "Informe a largura" }).positive("Largura inválida"),
+  heightCm: z.coerce.number({ invalid_type_error: "Informe a altura" }).positive("Altura inválida"),
+  depthCm: z.coerce.number({ invalid_type_error: "Informe a profundidade" }).positive("Profundidade inválida"),
   priceCents: z.coerce.number({ invalid_type_error: "Informe o preço" }).int().positive("Informe um preço válido"),
   compareAtCents: z.number().int().positive().nullable().optional(),
   stock: z.coerce.number().int().min(0).default(1),
@@ -94,11 +103,10 @@ export const productFormSchema = z.object({
   lookId: z.string().optional().nullable(),
   measurements: z
     .object({
-      bust: z.string().optional(),
-      waist: z.string().optional(),
-      hip: z.string().optional(),
-      length: z.string().optional(),
-      shoulder: z.string().optional(),
+      width: z.string().optional(),
+      height: z.string().optional(),
+      depth: z.string().optional(),
+      notes: z.string().optional(),
     })
     .optional(),
   imageUrl: z.string().optional(),

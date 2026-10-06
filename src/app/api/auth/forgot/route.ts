@@ -80,9 +80,9 @@ export async function POST(request: Request) {
   try {
     await sendMail(
       user.email,
-      "Redefinir senha · Vesta Moda",
+      "Redefinir senha · Morada Móveis",
       `<p>Olá, ${user.name}.</p>
-       <p>Recebemos um pedido para redefinir sua senha na Vesta Moda.</p>
+       <p>Recebemos um pedido para redefinir sua senha na Morada Móveis.</p>
        <p><a href="${resetUrl}">Clique aqui para criar uma nova senha</a>. Este link vale por 30 minutos.</p>
        <p>Se você não pediu isso, ignore este e-mail.</p>`,
     );

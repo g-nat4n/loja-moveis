@@ -30,6 +30,9 @@ export async function saveProductAction(_prev: { error?: string } | null, formDa
     size: String(formData.get("size") ?? "").trim(),
     color: String(formData.get("color") ?? "").trim(),
     condition: String(formData.get("condition") ?? "EXCELLENT"),
+    widthCm: Number(formData.get("widthCm")),
+    heightCm: Number(formData.get("heightCm")),
+    depthCm: Number(formData.get("depthCm")),
     priceCents: Math.round(Number(formData.get("price")) * 100),
     compareAtCents: compareAt ? Math.round(Number(compareAt) * 100) : null,
     stock: Number(formData.get("stock") || 1),
@@ -41,16 +44,15 @@ export async function saveProductAction(_prev: { error?: string } | null, formDa
     lookId: String(formData.get("lookId") || "") || null,
     imageUrl: String(formData.get("imageUrl") || "") || undefined,
     measurements: {
-      bust: String(formData.get("bust") || "") || undefined,
-      waist: String(formData.get("waist") || "") || undefined,
-      hip: String(formData.get("hip") || "") || undefined,
-      length: String(formData.get("length") || "") || undefined,
-      shoulder: String(formData.get("shoulder") || "") || undefined,
+      width: `${formData.get("widthCm")} cm`,
+      height: `${formData.get("heightCm")} cm`,
+      depth: `${formData.get("depthCm")} cm`,
+      notes: String(formData.get("measureNotes") || "") || undefined,
     },
   });
 
   if (!parsed.success) {
-    return { error: parsed.error.issues[0]?.message ?? "Revise os dados da peça." };
+    return { error: parsed.error.issues[0]?.message ?? "Revise os dados do móvel." };
   }
 
   try {
@@ -69,7 +71,7 @@ export async function saveProductAction(_prev: { error?: string } | null, formDa
     if (typeof error === "object" && error && "digest" in error && String((error as { digest?: string }).digest).startsWith("NEXT_REDIRECT")) {
       throw error;
     }
-    const message = error instanceof Error ? error.message : "Não foi possível salvar a peça.";
+    const message = error instanceof Error ? error.message : "Não foi possível salvar o móvel.";
     return { error: message };
   }
 }

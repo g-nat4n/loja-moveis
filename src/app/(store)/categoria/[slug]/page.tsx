@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!category) return createMetadata({ title: "Categoria", noIndex: true });
   return createMetadata({
     title: category.name,
-    description: category.description ?? `Peças da categoria ${category.name} na Vesta.`,
+    description: category.description ?? `Móveis da categoria ${category.name} na Morada.`,
     path: `/categoria/${slug}`,
   });
 }
@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: { params: Params }) {
           <p className="mt-4 max-w-xl text-sm leading-relaxed text-taupe">{category.description}</p>
         ) : null}
         {products.length === 0 ? (
-          <p className="mt-16 text-sm text-taupe">Nenhuma peça nesta categoria no momento.</p>
+          <p className="mt-16 text-sm text-taupe">Nenhum móvel nesta categoria no momento.</p>
         ) : (
           <div className="mt-2">
             <CatalogGrid products={products} />

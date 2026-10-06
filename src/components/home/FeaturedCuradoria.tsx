@@ -24,18 +24,18 @@ export type CuradoriaCard = {
 
 const PRICE_CHIPS = [
   { id: "all", label: "Todos" },
-  { id: "low", label: "Até R$ 300" },
-  { id: "mid", label: "R$ 301–600" },
-  { id: "high", label: "Acima de R$ 600" },
+  { id: "low", label: "Até R$ 2.000" },
+  { id: "mid", label: "R$ 2.001–4.000" },
+  { id: "high", label: "Acima de R$ 4.000" },
 ] as const;
 
-const CATEGORY_ORDER = ["Blazers", "Vestidos", "Camisas", "Bolsas", "Sapatos", "Vintage"];
-const STYLE_ORDER = ["Social", "Festa", "Casual", "Vintage", "Essencial"];
+const CATEGORY_ORDER = ["Sofás", "Mesas", "Cadeiras e poltronas", "Camas", "Estantes e racks", "Aparadores"];
+const STYLE_ORDER = ["Contemporâneo", "Escandinavo", "Orgânico", "Industrial suave", "Nórdico", "Mid-century", "Minimalista"];
 
 function matchesPrice(cents: number, chip: string) {
-  if (chip === "low") return cents <= 30000;
-  if (chip === "mid") return cents >= 30100 && cents <= 60000;
-  if (chip === "high") return cents > 60000;
+  if (chip === "low") return cents <= 200000;
+  if (chip === "mid") return cents >= 200100 && cents <= 400000;
+  if (chip === "high") return cents > 400000;
   return true;
 }
 
@@ -147,8 +147,8 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                   type="button"
                   onClick={() => setPrice(chip.id)}
                   className={cn(
-                    "border border-forest/30 bg-ivory px-3 py-1.5 text-xs font-bold text-ink transition hover:border-wine hover:bg-sand hover:text-burgundy",
-                    price === chip.id && "border-wine bg-wine text-white hover:border-wine hover:bg-wine hover:text-white",
+                    "rounded-full border border-ink/15 bg-white px-3 py-1.5 text-xs font-bold text-ink transition hover:bg-black/5",
+                    price === chip.id && "border-transparent bg-black/75 text-white hover:bg-black/85",
                   )}
                 >
                   {chip.label}
@@ -159,14 +159,14 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
         </Reveal>
 
         {visible.length === 0 ? (
-          <div className="mt-10 border border-dashed border-gold bg-white p-12 text-center">
-            <SearchX className="mx-auto h-8 w-8 text-wine" />
-            <h3 className="mt-4 font-serif text-2xl text-forest">{catalog.emptyTitle}</h3>
-            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-[#5b5a51]">{catalog.emptyText}</p>
+          <div className="mt-10 rounded-3xl border border-dashed border-ink/20 bg-white p-12 text-center">
+            <SearchX className="mx-auto h-8 w-8 text-ink/40" />
+            <h3 className="mt-4 font-serif text-2xl text-ink">{catalog.emptyTitle}</h3>
+            <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-taupe">{catalog.emptyText}</p>
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 bg-wine px-5 py-3 text-sm font-bold text-white"
+              className="mt-6 rounded-full bg-black/70 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-black/85"
             >
               {catalog.clearFilters}
             </button>
@@ -178,13 +178,13 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
               return (
                 <motion.article
                   key={product.item.productId}
-                  className="product-card overflow-hidden bg-white"
+                  className="product-card overflow-hidden rounded-3xl border border-ink/8 bg-white shadow-[0_12px_32px_rgba(0,0,0,0.05)]"
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
                   transition={{ duration: 0.6, delay: (index % 3) * 0.08, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div className="relative h-80 overflow-hidden">
+                  <div className="relative h-80 overflow-hidden rounded-t-3xl">
                     <Link href={`/produto/${product.item.slug}`} className="block h-full">
                       {product.item.imageUrl ? (
                         <Image
@@ -205,8 +205,8 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                     <button
                       type="button"
                       className={cn(
-                        "absolute right-4 top-4 z-10 rounded-full bg-white/95 p-3 text-burgundy",
-                        liked && "text-wine",
+                        "absolute right-4 top-4 z-10 rounded-full bg-white/90 p-3 text-ink shadow-sm backdrop-blur-sm transition hover:bg-black/10",
+                        liked && "text-ink",
                       )}
                       aria-label={`Favoritar ${product.item.name}`}
                       onClick={() =>
@@ -217,11 +217,11 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                         )
                       }
                     >
-                      <Heart className={cn("h-[18px] w-[18px]", liked && "fill-wine")} />
+                      <Heart className={cn("h-[18px] w-[18px]", liked && "fill-ink")} />
                     </button>
                     {product.sold ? (
-                      <span className="absolute left-4 top-4 z-10 bg-ink px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white">
-                        Vendida
+                      <span className="absolute left-4 top-4 z-10 rounded-full bg-black/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                        Vendido
                       </span>
                     ) : null}
                   </div>
@@ -231,9 +231,9 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                         <Link href={`/produto/${product.item.slug}`}>
                           <h3 className="font-serif text-xl text-ink">{product.item.name}</h3>
                         </Link>
-                        <p className="mt-1 text-xs uppercase tracking-[0.1em] text-wine">{product.meta}</p>
+                        <p className="mt-1 text-xs uppercase tracking-[0.1em] text-taupe">{product.meta}</p>
                       </div>
-                      <p className="whitespace-nowrap font-bold text-gold">
+                      <p className="whitespace-nowrap font-bold text-ink">
                         {formatBrandPrice(product.item.priceCents)}
                       </p>
                     </div>
@@ -241,7 +241,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                       <AddToCartButton
                         sold={product.sold}
                         item={product.item}
-                        className="min-h-0 w-full border border-gold bg-gold py-3 text-sm font-bold normal-case tracking-normal text-ink hover:bg-white"
+                        className="min-h-0 w-full rounded-full border-0 bg-black/70 py-3 text-sm font-bold normal-case tracking-normal text-white backdrop-blur-sm hover:bg-black/85"
                       />
                     </div>
                   </div>

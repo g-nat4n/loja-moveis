@@ -80,7 +80,7 @@ export default async function AdminProductsPage({
                     </div>
                     <div className="pt-2.5">
                       <p className="text-[9px] uppercase tracking-[0.14em] text-taupe">
-                        {product.brand} · Tam. {product.size}
+                        {product.brand} · {product.widthCm}×{product.depthCm}×{product.heightCm} cm
                       </p>
                       <h2 className="mt-0.5 font-serif text-lg leading-snug text-ink group-hover:text-burgundy">{product.name}</h2>
                       <p className="mt-1 text-sm font-bold text-gold">{formatBRL(product.priceCents)}</p>

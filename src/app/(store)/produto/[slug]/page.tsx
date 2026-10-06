@@ -16,7 +16,7 @@ type Params = Promise<{ slug: string }>;
 export async function generateMetadata({ params }: { params: Params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
-  if (!product) return createMetadata({ title: "Peça não encontrada", noIndex: true });
+  if (!product) return createMetadata({ title: "Móvel não encontrado", noIndex: true });
   return createMetadata({
     title: product.name,
     description: product.description,
@@ -66,14 +66,14 @@ export default async function ProductPage({ params }: { params: Params }) {
           </p>
           <h1 className="display mt-3 text-4xl md:text-5xl">{product.name}</h1>
           <div className="mt-4 flex flex-wrap gap-2">
-            {product.uniquePiece ? <Badge>Peça única</Badge> : null}
+            {product.uniquePiece ? <Badge>Exclusivo</Badge> : null}
             {product.stock === 1 && available ? <Badge tone="wine">Última unidade disponível</Badge> : null}
-            {!available ? <Badge tone="ink">Vendida</Badge> : null}
+            {!available ? <Badge tone="ink">Vendido</Badge> : null}
           </div>
           <p className="mt-6 font-serif text-3xl font-semibold text-gold">{formatBRL(product.priceCents)}</p>
           <dl className="mt-8 grid grid-cols-2 gap-4 text-sm">
             <div>
-              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Tamanho</dt>
+              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Porte</dt>
               <dd className="mt-1">{product.size}</dd>
             </div>
             <div>
@@ -88,24 +88,31 @@ export default async function ProductPage({ params }: { params: Params }) {
               <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Estoque</dt>
               <dd className="mt-1">{available ? `${product.stock} unidade${product.stock > 1 ? "s" : ""}` : "Indisponível"}</dd>
             </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Largura</dt>
+              <dd className="mt-1">{product.widthCm} cm</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Profundidade</dt>
+              <dd className="mt-1">{product.depthCm} cm</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Altura</dt>
+              <dd className="mt-1">{product.heightCm} cm</dd>
+            </div>
+            <div>
+              <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Material</dt>
+              <dd className="mt-1">{product.material ?? "—"}</dd>
+            </div>
           </dl>
           <p className="mt-8 text-sm leading-relaxed text-taupe">{product.description}</p>
           {product.story ? (
             <p className="mt-4 font-serif italic text-burgundy">{product.story}</p>
           ) : null}
-          {Object.values(measurements).some(Boolean) ? (
+          {measurements.notes ? (
             <div className="mt-8">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-taupe">Medidas aproximadas</p>
-              <ul className="mt-3 grid grid-cols-2 gap-2 text-sm">
-                {Object.entries(measurements).map(([key, value]) =>
-                  value ? (
-                    <li key={key} className="flex justify-between border-b border-line py-2">
-                      <span className="capitalize text-taupe">{labelMeasure(key)}</span>
-                      <span>{value}</span>
-                    </li>
-                  ) : null,
-                )}
-              </ul>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-taupe">Observações de medida</p>
+              <p className="mt-2 text-sm text-ink">{measurements.notes}</p>
             </div>
           ) : null}
           <div className="mt-8 space-y-3">
@@ -149,7 +156,7 @@ export default async function ProductPage({ params }: { params: Params }) {
 
       {lookPieces.length > 0 ? (
         <section className="container-main pb-16">
-          <p className="eyebrow">Complete o look</p>
+          <p className="eyebrow">Complete o ambiente</p>
           <h2 className="display mt-2 text-3xl">{product.look?.name}</h2>
           <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
             {lookPieces.map((item) => (
@@ -161,8 +168,8 @@ export default async function ProductPage({ params }: { params: Params }) {
 
       {related.length > 0 ? (
         <section className="container-main pb-24">
-          <p className="eyebrow">Mesma categoria e peças semelhantes</p>
-          <h2 className="display mt-2 text-3xl">Outras peças na mesma direção</h2>
+          <p className="eyebrow">Mesma categoria</p>
+          <h2 className="display mt-2 text-3xl">Outros móveis na mesma direção</h2>
           <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
             {related.map((item) => (
               <ProductCard key={item.id} product={item} />
@@ -172,15 +179,4 @@ export default async function ProductPage({ params }: { params: Params }) {
       ) : null}
     </StoreShell>
   );
-}
-
-function labelMeasure(key: string) {
-  const labels: Record<string, string> = {
-    bust: "Busto",
-    waist: "Cintura",
-    hip: "Quadril",
-    length: "Comprimento",
-    shoulder: "Ombro",
-  };
-  return labels[key] ?? key;
 }

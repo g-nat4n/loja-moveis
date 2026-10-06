@@ -4,11 +4,12 @@ import { EditorialLook } from "@/components/home/Sections";
 import { Button } from "@/components/ui/Button";
 import { createMetadata } from "@/lib/seo";
 import { BRAND } from "@/lib/brand";
+import { APP_NAME } from "@/lib/constants";
 
 export const metadata = createMetadata({
-  title: "A Vesta",
+  title: `Sobre · ${APP_NAME}`,
   description: BRAND.manifesto.description,
-  path: "/a-vesta",
+  path: "/sobre",
 });
 
 export default function AboutPage() {
