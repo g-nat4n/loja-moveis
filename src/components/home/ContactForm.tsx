@@ -35,7 +35,7 @@ export function ContactForm() {
     }
 
     setStatus("ok");
-    setFeedback("Mensagem recebida. A Morada retorna em breve.");
+    setFeedback("Mensagem recebida. A Mareli Arte retorna em breve.");
     form.reset();
   }
 

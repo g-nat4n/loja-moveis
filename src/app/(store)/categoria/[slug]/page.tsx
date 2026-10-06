@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Params }) {
   if (!category) return createMetadata({ title: "Categoria", noIndex: true });
   return createMetadata({
     title: category.name,
-    description: category.description ?? `Móveis da categoria ${category.name} na Morada.`,
+    description: category.description ?? `Móveis da categoria ${category.name} na Mareli Arte.`,
     path: `/categoria/${slug}`,
   });
 }

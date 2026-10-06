@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -41,11 +42,18 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 py-3 sm:px-5 sm:py-4 lg:px-8">
-        <Link
-          href="/"
-          className="shrink-0 font-serif text-lg font-semibold tracking-[0.18em] text-ink sm:text-2xl sm:tracking-[0.22em]"
-        >
-          {BRAND.wordmark}
+        <Link href="/" className="flex shrink-0 items-center gap-2.5 sm:gap-3">
+          <Image
+            src={BRAND.logo}
+            alt="Mareli Arte"
+            width={44}
+            height={44}
+            className="h-10 w-10 rounded-full border border-gold/40 object-cover sm:h-11 sm:w-11"
+            priority
+          />
+          <span className="font-serif text-lg font-semibold tracking-[0.16em] text-burgundy sm:text-xl sm:tracking-[0.2em]">
+            {BRAND.wordmark}
+          </span>
         </Link>
 
         <nav className="hidden min-w-0 items-center gap-1 xl:flex" aria-label="Navegação principal">
@@ -88,7 +96,7 @@ export function Header() {
           >
             <ShoppingBag className="h-[19px] w-[19px]" strokeWidth={2} />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-black/75 px-1 text-[10px] leading-4 text-white">
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] leading-4 text-ink">
                 {count}
               </span>
             ) : null}

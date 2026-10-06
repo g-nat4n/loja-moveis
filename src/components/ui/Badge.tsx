@@ -10,10 +10,10 @@ export function Badge({
   className?: string;
 }) {
   const tones = {
-    gold: "rounded-full bg-black/70 text-white backdrop-blur-sm",
-    wine: "rounded-full bg-black/55 text-white backdrop-blur-sm",
-    forest: "rounded-full border border-ink/15 bg-white/90 text-ink",
-    ink: "rounded-full bg-black/80 text-white",
+    gold: "rounded-full bg-gold/20 text-gold-deep",
+    wine: "rounded-full bg-wine/15 text-wine",
+    forest: "rounded-full border border-burgundy/20 bg-white/90 text-burgundy",
+    ink: "rounded-full bg-burgundy text-ivory",
   };
 
   return (

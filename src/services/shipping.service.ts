@@ -76,7 +76,7 @@ export async function quoteShipping(zip: string): Promise<ShippingQuote[]> {
   const quotes: ShippingQuote[] = [
     {
       id: "pickup",
-      carrier: "Vesta",
+      carrier: "Mareli Arte",
       service: "pickup",
       label: "Retirada combinada, sem frete",
       priceCents: 0,

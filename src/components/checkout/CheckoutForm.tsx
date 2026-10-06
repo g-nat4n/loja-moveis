@@ -219,7 +219,7 @@ export function CheckoutForm({
           {pending ? "Reservando peça..." : "Ir para o pagamento"}
         </Button>
         <p className="text-xs text-taupe">
-          PIX, cartão e parcelamento via Mercado Pago. Dados do cartão não são armazenados na Vesta.
+          PIX, cartão e parcelamento via Mercado Pago. Dados do cartão não são armazenados na Mareli Arte.
         </p>
       </div>
       {summary}

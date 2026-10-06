@@ -8,6 +8,7 @@ import { RemoveCartButton } from "@/components/cart/RemoveCartButton";
 import { useCart } from "@/components/cart/CartProvider";
 import { Button } from "@/components/ui/Button";
 import { formatBRL } from "@/lib/format";
+import { BRAND } from "@/lib/brand";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, subtotalCents } = useCart();
@@ -39,7 +40,7 @@ export function CartDrawer() {
             <div className="flex items-center justify-between border-b border-gold px-6 py-5">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-wine">Sua seleção</p>
-                <h2 className="mt-1 font-serif text-2xl text-ink">Sacola Vesta</h2>
+                <h2 className="mt-1 font-serif text-2xl text-ink">{BRAND.bag.title}</h2>
               </div>
               <button type="button" onClick={closeCart} className="p-2 text-forest" aria-label="Fechar">
                 <X className="h-5 w-5" />

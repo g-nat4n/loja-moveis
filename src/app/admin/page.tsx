@@ -32,7 +32,7 @@ export default async function AdminHome() {
   return (
     <AdminShell>
       <p className="eyebrow">Painel</p>
-      <h1 className="display mt-2 text-4xl">Atelier Vesta</h1>
+      <h1 className="display mt-2 text-4xl">Atelier Mareli</h1>
       <div className="mt-10 grid gap-4 md:grid-cols-3">
         {cards.map((card) => (
           <article key={card.label} className="border border-line bg-white p-6">

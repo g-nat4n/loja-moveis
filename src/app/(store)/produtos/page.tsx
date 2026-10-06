@@ -8,7 +8,7 @@ import { createMetadata } from "@/lib/seo";
 
 export const metadata = createMetadata({
   title: "Móveis",
-  description: "Explore a Morada: móveis exclusivos, filtros por porte, marca, condição e disponibilidade.",
+  description: "Explore a Mareli Arte: móveis exclusivos, filtros por porte, marca, condição e disponibilidade.",
   path: "/produtos",
 });
 

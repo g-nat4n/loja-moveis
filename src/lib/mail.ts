@@ -40,7 +40,7 @@ function transport() {
 
 export async function sendMail(to: string, subject: string, html: string) {
   const user = smtpUser();
-  const from = process.env.SMTP_FROM?.trim() || `Morada Móveis <${user}>`;
+  const from = process.env.SMTP_FROM?.trim() || `Mareli Arte <${user}>`;
   const mailer = transport();
   if (!mailer) {
     throw new Error("Envio de e-mail não configurado.");

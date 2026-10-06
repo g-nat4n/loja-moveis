@@ -29,8 +29,8 @@ const PRICE_CHIPS = [
   { id: "high", label: "Acima de R$ 4.000" },
 ] as const;
 
-const CATEGORY_ORDER = ["Sofás", "Mesas", "Cadeiras e poltronas", "Camas", "Estantes e racks", "Aparadores"];
-const STYLE_ORDER = ["Contemporâneo", "Escandinavo", "Orgânico", "Industrial suave", "Nórdico", "Mid-century", "Minimalista"];
+const CATEGORY_ORDER = ["Mesas", "Estantes e racks", "Sofás", "Cadeiras e poltronas", "Camas"];
+const STYLE_ORDER = ["Clássico", "Vintage", "Contemporâneo", "Escandinavo", "Orgânico", "Mid-century", "Nórdico"];
 
 function matchesPrice(cents: number, chip: string) {
   if (chip === "low") return cents <= 200000;
@@ -147,8 +147,8 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                   type="button"
                   onClick={() => setPrice(chip.id)}
                   className={cn(
-                    "rounded-full border border-ink/15 bg-white px-3 py-1.5 text-xs font-bold text-ink transition hover:bg-black/5",
-                    price === chip.id && "border-transparent bg-black/75 text-white hover:bg-black/85",
+                    "rounded-full border border-line bg-white px-3 py-1.5 text-xs font-bold text-ink transition hover:border-gold hover:bg-gold/10",
+                    price === chip.id && "border-transparent bg-burgundy text-ivory hover:bg-wine",
                   )}
                 >
                   {chip.label}
@@ -159,14 +159,14 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
         </Reveal>
 
         {visible.length === 0 ? (
-          <div className="mt-10 rounded-3xl border border-dashed border-ink/20 bg-white p-12 text-center">
-            <SearchX className="mx-auto h-8 w-8 text-ink/40" />
-            <h3 className="mt-4 font-serif text-2xl text-ink">{catalog.emptyTitle}</h3>
+          <div className="mt-10 rounded-3xl border border-dashed border-gold/50 bg-white p-12 text-center">
+            <SearchX className="mx-auto h-8 w-8 text-gold-deep" />
+            <h3 className="mt-4 font-serif text-2xl text-burgundy">{catalog.emptyTitle}</h3>
             <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-taupe">{catalog.emptyText}</p>
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 rounded-full bg-black/70 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-black/85"
+              className="mt-6 rounded-full bg-burgundy px-5 py-3 text-sm font-bold text-ivory transition hover:bg-wine"
             >
               {catalog.clearFilters}
             </button>
@@ -178,7 +178,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
               return (
                 <motion.article
                   key={product.item.productId}
-                  className="product-card overflow-hidden rounded-3xl border border-ink/8 bg-white shadow-[0_12px_32px_rgba(0,0,0,0.05)]"
+                  className="product-card overflow-hidden rounded-3xl border border-gold/20 bg-white shadow-[0_12px_32px_rgba(61,43,31,0.08)]"
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.15 }}
@@ -220,7 +220,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                       <Heart className={cn("h-[18px] w-[18px]", liked && "fill-ink")} />
                     </button>
                     {product.sold ? (
-                      <span className="absolute left-4 top-4 z-10 rounded-full bg-black/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                      <span className="absolute left-4 top-4 z-10 rounded-full bg-burgundy/85 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold backdrop-blur-sm">
                         Vendido
                       </span>
                     ) : null}
@@ -241,7 +241,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                       <AddToCartButton
                         sold={product.sold}
                         item={product.item}
-                        className="min-h-0 w-full rounded-full border-0 bg-black/70 py-3 text-sm font-bold normal-case tracking-normal text-white backdrop-blur-sm hover:bg-black/85"
+                        className="min-h-0 w-full rounded-full border-0 bg-burgundy py-3 text-sm font-bold normal-case tracking-normal text-ivory hover:bg-wine"
                       />
                     </div>
                   </div>

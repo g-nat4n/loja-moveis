@@ -58,17 +58,17 @@ export function CatalogToolbar({
 
   return (
     <div className="mt-10 space-y-6">
-      <div className="border border-ink/10 bg-cream/60 rounded-3xl overflow-hidden">
+      <div className="overflow-hidden rounded-3xl border border-gold/30 bg-cream/70">
         <button
           type="button"
           onClick={() => setMeasureOpen((open) => !open)}
-          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-black/5"
+          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-gold/10"
           aria-expanded={measureOpen}
         >
           <span className="flex items-center gap-3">
-            <Ruler className="h-5 w-5 text-ink/60" strokeWidth={1.75} />
+            <Ruler className="h-5 w-5 text-gold-deep" strokeWidth={1.75} />
             <span>
-              <span className="block text-[11px] font-bold uppercase tracking-[0.22em] text-ink/70">
+              <span className="block text-[11px] font-bold uppercase tracking-[0.22em] text-gold-deep">
                 Escolha sob medida
               </span>
               <span className="mt-1 block text-sm text-taupe">
@@ -100,7 +100,7 @@ export function CatalogToolbar({
                 <label
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3 transition",
-                    fitMode === "single" ? "border-ink/20 bg-black/75 text-ivory" : "border-ink/10 bg-ivory hover:bg-black/5",
+                    fitMode === "single" ? "border-gold/40 bg-burgundy text-ivory" : "border-line bg-ivory hover:bg-gold/10",
                   )}
                 >
                   <input type="radio" name="fitMode" value="single" defaultChecked={fitMode === "single"} className="mt-1" />
@@ -114,7 +114,7 @@ export function CatalogToolbar({
                 <label
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3 transition",
-                    fitMode === "combo" ? "border-ink/20 bg-black/75 text-ivory" : "border-ink/10 bg-ivory hover:bg-black/5",
+                    fitMode === "combo" ? "border-gold/40 bg-burgundy text-ivory" : "border-line bg-ivory hover:bg-gold/10",
                   )}
                 >
                   <input type="radio" name="fitMode" value="combo" defaultChecked={fitMode === "combo"} className="mt-1" />
@@ -167,7 +167,7 @@ export function CatalogToolbar({
                 <div className="flex items-end gap-2">
                   <button
                     type="submit"
-                    className="h-11 flex-1 rounded-full bg-black/70 px-4 text-xs font-bold uppercase tracking-[0.14em] text-ivory backdrop-blur-sm transition hover:bg-black/85"
+                    className="h-11 flex-1 rounded-full bg-burgundy px-4 text-xs font-bold uppercase tracking-[0.14em] text-ivory transition hover:bg-wine"
                   >
                     Ver que cabem
                   </button>
@@ -175,7 +175,7 @@ export function CatalogToolbar({
                     <button
                       type="button"
                       onClick={clearSpace}
-                      className="h-11 rounded-full border border-ink/15 px-3 text-xs font-semibold uppercase tracking-[0.12em] text-taupe transition hover:bg-black/5 hover:text-ink"
+                      className="h-11 rounded-full border border-line px-3 text-xs font-semibold uppercase tracking-[0.12em] text-taupe transition hover:border-gold hover:text-burgundy"
                     >
                       Limpar
                     </button>

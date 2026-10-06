@@ -28,19 +28,19 @@ export function ProductCard({ product }: { product: ProductCardProduct }) {
           ) : null}
           <div className="absolute left-3 top-3 flex flex-col gap-1.5">
             {sold ? (
-              <span className="rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+              <span className="rounded-full bg-burgundy/85 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-ivory backdrop-blur-sm">
                 Vendido
               </span>
             ) : null}
             {product.uniquePiece && !sold ? (
-              <span className="rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
+              <span className="rounded-full bg-gold px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-ink backdrop-blur-sm">
                 Exclusivo
               </span>
             ) : null}
             {product.stock === 1 && !sold ? <Badge tone="wine">Última unidade</Badge> : null}
           </div>
           {!sold ? (
-            <span className="absolute inset-x-3 bottom-3 translate-y-4 rounded-full bg-black/70 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-white opacity-0 backdrop-blur-sm transition group-hover:translate-y-0 group-hover:opacity-100">
+            <span className="absolute inset-x-3 bottom-3 translate-y-4 rounded-full bg-burgundy/90 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-ivory opacity-0 backdrop-blur-sm transition group-hover:translate-y-0 group-hover:opacity-100">
               Ver móvel
             </span>
           ) : null}

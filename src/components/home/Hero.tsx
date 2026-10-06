@@ -20,11 +20,26 @@ export function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-burgundy/90 via-burgundy/45 to-burgundy/25" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-16 text-center sm:justify-center sm:pb-0">
+          <motion.div
+            className="mb-6 overflow-hidden rounded-full border-4 border-white shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
+            initial={reduced ? false : { opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.55 }}
+          >
+            <Image
+              src={BRAND.logo}
+              alt="Logo Mareli Arte"
+              width={112}
+              height={112}
+              className="h-24 w-24 object-cover sm:h-28 sm:w-28"
+              priority
+            />
+          </motion.div>
           <motion.p
-            className="text-[11px] font-bold uppercase tracking-[0.32em] text-white/80"
+            className="text-[11px] font-bold uppercase tracking-[0.32em] text-gold"
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -40,7 +55,7 @@ export function Hero() {
             {hero.titleLine}
           </motion.h1>
           <motion.p
-            className="mt-2 font-serif text-5xl italic leading-none text-white sm:text-6xl lg:text-7xl"
+            className="script mt-2 text-5xl leading-none text-gold sm:text-6xl lg:text-7xl"
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.18, duration: 0.65 }}
@@ -61,16 +76,13 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.5 }}
           >
-            <Button
-              href="/produtos"
-              className="min-h-0 border border-white/70 bg-black/45 px-8 py-3.5 text-xs tracking-[0.2em] text-white backdrop-blur-sm hover:bg-black/70"
-            >
+            <Button href="/produtos" variant="gold" className="min-h-0 px-8 py-3.5 text-xs tracking-[0.2em]">
               {hero.primaryCta}
             </Button>
             <Button
               href="/sobre"
-              variant="ghost"
-              className="min-h-0 border-white/35 bg-transparent px-6 py-3.5 text-xs tracking-[0.16em] text-white hover:border-white/60 hover:bg-black/25 hover:text-white"
+              variant="outline"
+              className="min-h-0 border-white/50 px-6 py-3.5 text-xs tracking-[0.16em] text-white hover:border-gold hover:bg-gold/15 hover:text-white"
             >
               {hero.secondaryCta}
             </Button>

@@ -20,10 +20,10 @@ export function FurnitureShowcase() {
     <section id="ambientes" className="w-full overflow-hidden bg-cream py-16 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-ink/45">Ambientes</p>
-          <h2 className="mt-3 font-serif text-4xl font-semibold text-ink sm:text-5xl">Móveis em movimento</h2>
+          <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-gold-deep">Ambientes</p>
+          <h2 className="mt-3 font-serif text-4xl font-semibold text-burgundy sm:text-5xl">Móveis em movimento</h2>
           <p className="mt-4 text-sm leading-relaxed text-taupe">
-            Uma seleção visual da casa — deslize com o olhar e escolha o que cabe no seu espaço.
+            Uma seleção visual no espírito Mareli — deslize com o olhar e escolha o que cabe no seu espaço.
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export function FurnitureShowcase() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent opacity-80 transition group-hover:opacity-90" />
               <div className="absolute inset-x-0 bottom-0 p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-white/70">Morada</p>
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gold">Mareli</p>
                 <p className="mt-1 font-serif text-xl text-white sm:text-2xl">{item.name}</p>
               </div>
             </Link>
@@ -71,7 +71,7 @@ export function FurnitureShowcase() {
       <div className="mx-auto mt-10 flex max-w-7xl justify-center px-6 lg:px-8">
         <Link
           href="/produtos"
-          className="rounded-full bg-black/70 px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-black/85"
+          className="rounded-full bg-burgundy px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-ivory transition hover:bg-wine"
         >
           Ver todos os móveis
         </Link>

@@ -7,7 +7,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen bg-ivory">
       <aside className="fixed inset-y-0 left-0 hidden w-60 border-r border-line bg-burgundy py-6 text-ivory md:flex md:flex-col">
         <Link href="/" className="display px-6 text-2xl tracking-[0.16em]">
-          VESTA
+          MARELI
         </Link>
         <p className="mt-1 px-6 text-[10px] uppercase tracking-[0.24em] text-gold">Atelier</p>
         <AdminNav />
@@ -35,7 +35,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
       </aside>
       <div className="md:pl-60">
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-6 py-4 md:hidden">
-          <span className="display text-xl">VESTA</span>
+          <span className="display text-xl">MARELI</span>
           <Link
             href="/"
             className="border border-gold px-3 py-2 text-[10px] font-bold uppercase tracking-[0.14em] text-burgundy transition hover:bg-gold"

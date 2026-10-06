@@ -1,5 +1,5 @@
-export const APP_NAME = "Morada Móveis";
-export const APP_TAGLINE = "Móveis com presença para o espaço que você vive.";
+export const APP_NAME = "Mareli Arte";
+export const APP_TAGLINE = "Trazendo arte e beleza para o seu lar!";
 
 export const NAV_LINKS = [
   { href: "/", label: "Início" },
