@@ -5,12 +5,12 @@ export function Manifesto() {
   const { manifesto } = BRAND;
 
   return (
-    <section id="mareli" className="w-full bg-ivory px-6 py-20 lg:px-8 lg:py-24">
+    <section id="morada" className="w-full bg-ivory px-6 py-20 lg:px-8 lg:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mx-auto max-w-3xl text-center">
           <Reveal>
-            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-gold-deep">{manifesto.kicker}</p>
-            <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-burgundy sm:text-5xl">
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-ink/45">{manifesto.kicker}</p>
+            <h2 className="mt-4 font-serif text-4xl font-semibold leading-tight text-ink sm:text-5xl">
               {manifesto.title}
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-taupe">{manifesto.description}</p>
@@ -19,8 +19,8 @@ export function Manifesto() {
         <div className="mt-14 grid gap-8 md:grid-cols-3">
           {manifesto.pillars.map((pillar, index) => (
             <Reveal key={pillar.title} delay={index * 0.08}>
-              <article className="rounded-2xl border border-line bg-white p-6 pt-6 shadow-[0_10px_28px_rgba(61,43,31,0.06)]">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold-deep">{pillar.n}</span>
+              <article className="rounded-2xl border border-ink/8 bg-white p-6 pt-6 shadow-[0_10px_28px_rgba(0,0,0,0.04)]">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink/40">{pillar.n}</span>
                 <h3 className="mt-4 font-serif text-2xl text-ink">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-7 text-taupe">{pillar.text}</p>
               </article>

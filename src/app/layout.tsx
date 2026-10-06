@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Arimo, Great_Vibes, Playfair_Display } from "next/font/google";
+import { Arimo, Playfair_Display } from "next/font/google";
 import { APP_NAME, APP_TAGLINE } from "@/lib/constants";
 import { Providers } from "@/components/layout/Providers";
 import "./globals.css";
@@ -14,12 +14,6 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
   style: ["normal", "italic"],
   weight: ["400", "500", "600", "700"],
-});
-
-const greatVibes = Great_Vibes({
-  subsets: ["latin"],
-  variable: "--font-great-vibes",
-  weight: "400",
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
@@ -45,7 +39,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="pt-BR" className={`${arimo.variable} ${playfair.variable} ${greatVibes.variable}`}>
+    <html lang="pt-BR" className={`${arimo.variable} ${playfair.variable}`}>
       <body className="font-sans">
         <Providers>{children}</Providers>
       </body>

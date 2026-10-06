@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
@@ -46,12 +46,12 @@ export function Header() {
           <Image
             src={BRAND.logo}
             alt="Mareli Arte"
-            width={44}
-            height={44}
-            className="h-10 w-10 rounded-full border border-gold/40 object-cover sm:h-11 sm:w-11"
+            width={40}
+            height={40}
+            className="h-9 w-9 rounded-full object-cover sm:h-10 sm:w-10"
             priority
           />
-          <span className="font-serif text-lg font-semibold tracking-[0.16em] text-burgundy sm:text-xl sm:tracking-[0.2em]">
+          <span className="font-serif text-lg font-semibold tracking-[0.18em] text-ink sm:text-2xl sm:tracking-[0.22em]">
             {BRAND.wordmark}
           </span>
         </Link>
@@ -96,7 +96,7 @@ export function Header() {
           >
             <ShoppingBag className="h-[19px] w-[19px]" strokeWidth={2} />
             {count > 0 ? (
-              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold px-1 text-[10px] leading-4 text-ink">
+              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-black/75 px-1 text-[10px] leading-4 text-white">
                 {count}
               </span>
             ) : null}

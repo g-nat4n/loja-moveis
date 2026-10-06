@@ -11,7 +11,7 @@ export function TrustBar() {
           const Icon = ICONS[index] ?? Sparkles;
           return (
             <div key={item.label} className="flex min-w-[200px] items-center gap-3 sm:min-w-0">
-              <span className="text-gold">
+              <span className="text-ink/55">
                 <Icon className="h-5 w-5" strokeWidth={1.75} />
               </span>
               <div>
