@@ -18,6 +18,8 @@
     "seed": "tsx prisma/seed.ts"
   },
   "dependencies": {
+    "@neon/config": "^1.8.4",
+    "@neon/env": "^1.5.1",
     "@prisma/client": "^6.16.2",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
