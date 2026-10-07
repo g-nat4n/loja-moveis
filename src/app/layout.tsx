@@ -35,6 +35,9 @@ export const metadata: Metadata = {
     siteName: APP_NAME,
     images: [{ url: "/brand/logo-mareli.jpg" }],
   },
+  icons: {
+    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

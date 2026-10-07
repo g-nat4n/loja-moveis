@@ -20,7 +20,7 @@ export function Hero() {
           className="object-cover object-center"
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/30 to-ink/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-burgundy/80 via-burgundy/35 to-burgundy/20" />
 
         <div className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-16 text-center sm:justify-center sm:pb-0">
           <motion.p
@@ -61,18 +61,15 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.38, duration: 0.5 }}
           >
-            <Button
-              href="/produtos"
-              className="min-h-0 border border-white/70 bg-black/45 px-8 py-3.5 text-xs tracking-[0.2em] text-white backdrop-blur-sm hover:bg-black/70"
-            >
+            <Button href="/produtos" className="min-h-0 px-8 py-3.5 text-xs tracking-[0.2em]">
               {hero.primaryCta}
             </Button>
             <Button
-              href="/sobre"
-              variant="ghost"
-              className="min-h-0 border-white/35 bg-transparent px-6 py-3.5 text-xs tracking-[0.16em] text-white hover:border-white/60 hover:bg-black/25 hover:text-white"
+              href="/#categorias"
+              variant="outline"
+              className="min-h-0 border-white/55 bg-transparent px-6 py-3.5 text-xs tracking-[0.16em] text-white hover:border-wine hover:bg-wine/20 hover:text-white"
             >
-              {hero.secondaryCta}
+              Ver categorias
             </Button>
           </motion.div>
         </div>

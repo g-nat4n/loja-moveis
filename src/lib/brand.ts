@@ -6,6 +6,12 @@ export const BRAND = {
   instagramLabel: "Instagram",
   whatsappLabel: "WhatsApp",
   backTop: "Voltar ao topo ↑",
+  location: "Curitiba e Região Metropolitana",
+  address: {
+    line1: "Curitiba, Paraná",
+    line2: "Atendimento sob agendamento · Região Metropolitana",
+    mapQuery: "Curitiba, Paraná, Brasil",
+  },
   hero: {
     kicker: "Design para morar",
     titleLine: "MÓVEIS COM",
@@ -72,22 +78,22 @@ export const BRAND = {
     chips: [
       {
         label: "Sofás",
-        href: "/categoria/sofas",
+        href: "/produtos?category=sofas",
         image: "https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800",
       },
       {
         label: "Mesas",
-        href: "/categoria/mesas",
+        href: "/produtos?category=mesas",
         image: "https://images.pexels.com/photos/1080721/pexels-photo-1080721.jpeg?auto=compress&cs=tinysrgb&w=800",
       },
       {
         label: "Poltronas",
-        href: "/categoria/cadeiras-e-poltronas",
+        href: "/produtos?category=cadeiras-e-poltronas",
         image: "https://images.pexels.com/photos/276583/pexels-photo-276583.jpeg?auto=compress&cs=tinysrgb&w=800",
       },
       {
         label: "Camas",
-        href: "/categoria/camas",
+        href: "/produtos?category=camas",
         image: "https://images.pexels.com/photos/813691/pexels-photo-813691.jpeg?auto=compress&cs=tinysrgb&w=800",
       },
     ],
@@ -150,9 +156,10 @@ export const BRAND = {
     ],
   },
   contact: {
-    kicker: "Vamos conversar",
-    title: "O seu ambiente também inspira a Mareli.",
-    text: "Conte o que você procura, compartilhe medidas ou deixe seu recado. Vamos receber sua mensagem com atenção.",
+    kicker: "Visite e fale conosco",
+    title: "Entre em contato",
+    text: "Tire dúvidas, peça orçamento ou agende uma conversa pelo WhatsApp.",
+    cta: "Conversar no WhatsApp",
     name: "Nome",
     email: "E-mail",
     whatsapp: "WhatsApp",
@@ -166,7 +173,7 @@ export const BRAND = {
     title: "Sacola Mareli",
     empty: "Sua sacola está esperando um móvel especial.",
     subtotal: "Subtotal",
-    checkout: "Finalizar compra",
+    checkout: "Comprar pelo WhatsApp",
   },
   footer: {
     navTitle: "Navegue",

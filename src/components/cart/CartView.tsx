@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/Input";
 import { useCart } from "@/components/cart/CartProvider";
 import { RemoveCartButton } from "@/components/cart/RemoveCartButton";
 import { formatBRL } from "@/lib/format";
+import { buildCartWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CartView() {
   const { items, removeItem, subtotalCents } = useCart();
@@ -89,16 +90,27 @@ export function CartView() {
           </div>
           <div className="flex justify-between">
             <dt>Frete</dt>
-            <dd>Calcular no checkout</dd>
+            <dd>Combinar no WhatsApp</dd>
           </div>
           <div className="flex justify-between border-t border-line pt-3 font-medium">
             <dt>Total</dt>
             <dd>{formatBRL(Math.max(subtotalCents - discount, 0))}</dd>
           </div>
         </dl>
-        <Button href="/checkout" className="mt-8 w-full">
-          Ir para o checkout
-        </Button>
+        {items.length > 0 ? (
+          <Button
+            href={buildCartWhatsAppUrl(items)}
+            className="mt-8 w-full"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Comprar pelo WhatsApp
+          </Button>
+        ) : (
+          <Button href="/produtos" className="mt-8 w-full">
+            Ver móveis
+          </Button>
+        )}
       </aside>
     </section>
   );

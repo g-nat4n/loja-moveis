@@ -1,20 +1,29 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ivory: #ffffff;
-  --color-cream: #f7f7f7;
-  --color-sand: #f0f0f0;
-  --color-gold: #111111;
-  --color-gold-deep: #000000;
-  --color-burgundy: #0a0a0a;
-  --color-wine: #1a1a1a;
-  --color-forest: #2a2a2a;
-  --color-ink: #0a0a0a;
-  --color-taupe: #6b6b6b;
-  --color-line: #e8e8e8;
+  /* Identidade Mareli Arte */
+  --color-primary: #594238;
+  --color-background: #f7f3ed;
+  --color-accent: #b86f52;
+  --color-secondary: #788064;
+  --color-text: #4a4541;
+  --color-white: #ffffff;
+
+  /* Tokens existentes (mapeados para a nova identidade) */
+  --color-ivory: #f7f3ed;
+  --color-cream: #ffffff;
+  --color-sand: #efe9e0;
+  --color-gold: #b86f52;
+  --color-gold-deep: #9a5a42;
+  --color-burgundy: #594238;
+  --color-wine: #b86f52;
+  --color-forest: #788064;
+  --color-ink: #594238;
+  --color-taupe: #4a4541;
+  --color-line: #e4dcd2;
   --font-serif: var(--font-playfair), "Playfair Display", serif;
   --font-sans: var(--font-arimo), "Arimo", sans-serif;
-  --shadow-soft: 0 20px 50px rgba(0, 0, 0, 0.08);
+  --shadow-soft: 0 20px 50px rgba(89, 66, 56, 0.1);
 }
 
 @layer base {
@@ -24,18 +33,18 @@
   }
 
   body {
-    @apply bg-ivory text-ink antialiased;
+    @apply bg-ivory text-taupe antialiased;
     min-height: 100dvh;
     font-family: var(--font-sans), "Arimo", sans-serif;
   }
 
   ::selection {
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(89, 66, 56, 0.9);
     color: #ffffff;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-3 outline-ink/40;
+    @apply outline-2 outline-offset-3 outline-burgundy/45;
   }
 
   a {
@@ -63,7 +72,7 @@
   }
 
   .gold-line {
-    @apply h-px w-[68px] bg-ink/30;
+    @apply h-px w-[68px] bg-burgundy/30;
   }
 
   .product-card {
@@ -75,24 +84,24 @@
   }
 
   .eyebrow {
-    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-ink/50;
+    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-burgundy/55;
   }
 
   .eyebrow-wine {
-    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-ink/55;
+    @apply text-[11px] font-bold uppercase tracking-[0.28em] text-wine;
   }
 
   .display {
     font-family: var(--font-serif), "Playfair Display", serif;
-    @apply font-semibold tracking-[-0.02em] text-ink;
+    @apply font-semibold tracking-[-0.02em] text-burgundy;
   }
 
   .gold-rule {
-    @apply h-px w-16 bg-ink/25;
+    @apply h-px w-16 bg-accent/70;
   }
 
   .nav-link {
-    @apply relative inline-flex items-center rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-taupe transition-colors duration-300;
+    @apply relative inline-flex items-center rounded-full px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-burgundy transition-colors duration-300;
   }
 
   .nav-link::after {
@@ -102,7 +111,7 @@
     right: 0.85rem;
     bottom: 0.4rem;
     height: 1.5px;
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -110,8 +119,8 @@
 
   .nav-link:hover,
   .nav-link:focus-visible {
-    color: var(--color-ink);
-    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-accent);
+    background: rgba(184, 111, 82, 0.1);
   }
 
   .nav-link:hover::after,
@@ -121,12 +130,12 @@
   }
 
   .nav-link[aria-current="page"] {
-    color: var(--color-ink);
-    background: rgba(0, 0, 0, 0.06);
+    color: var(--color-accent);
+    background: rgba(184, 111, 82, 0.1);
   }
 
   .nav-link-mobile {
-    @apply relative block rounded-xl px-2 py-3 text-sm font-semibold text-ink transition-colors duration-300;
+    @apply relative block rounded-xl px-2 py-3 text-sm font-semibold text-burgundy transition-colors duration-300;
   }
 
   .nav-link-mobile::after {
@@ -137,7 +146,7 @@
     width: calc(100% - 1rem);
     max-width: 4.5rem;
     height: 1.5px;
-    background: rgba(0, 0, 0, 0.55);
+    background: var(--color-accent);
     transform: scaleX(0);
     transform-origin: left center;
     transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -145,8 +154,8 @@
 
   .nav-link-mobile:hover,
   .nav-link-mobile:focus-visible {
-    color: var(--color-ink);
-    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-accent);
+    background: rgba(184, 111, 82, 0.08);
   }
 
   .nav-link-mobile:hover::after,
@@ -155,6 +164,6 @@
   }
 
   .btn-buy {
-    @apply rounded-full bg-black/70 text-white backdrop-blur-sm transition hover:bg-black/85;
+    @apply rounded-full bg-burgundy text-white transition hover:bg-wine;
   }
 }

@@ -17,7 +17,7 @@ export function RemoveCartButton({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-ivory text-taupe transition hover:border-ink/20 hover:bg-black/10 hover:text-ink",
+        "inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line bg-ivory text-taupe transition hover:border-burgundy/25 hover:bg-accent/10 hover:text-burgundy",
         className,
       )}
       aria-label={label}

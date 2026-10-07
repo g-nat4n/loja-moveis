@@ -1,12 +1,10 @@
 import { StoreShell } from "@/components/layout/StoreShell";
 import { Hero } from "@/components/home/Hero";
-import { TrustBar } from "@/components/home/TrustBar";
 import { Manifesto } from "@/components/home/Manifesto";
 import { CategoryTiles } from "@/components/home/CategoryTiles";
 import { ContactBand, EditorialLook } from "@/components/home/Sections";
 import { FeaturedCuradoria } from "@/components/home/FeaturedCuradoria";
 import { FurnitureShowcase } from "@/components/home/FurnitureShowcase";
-import { TestimonialsCarousel } from "@/components/home/TestimonialsCarousel";
 import { getProductsBySlugs } from "@/services/product.service";
 import { FEATURED_PIECES } from "@/lib/brand";
 import { createMetadata } from "@/lib/seo";
@@ -46,12 +44,10 @@ export default async function HomePage() {
   return (
     <StoreShell>
       <Hero />
-      <TrustBar />
       <FeaturedCuradoria products={cards} />
       <CategoryTiles />
       <Manifesto />
       <EditorialLook />
-      <TestimonialsCarousel />
       <FurnitureShowcase />
       <ContactBand />
     </StoreShell>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
@@ -62,7 +62,7 @@ export function CatalogToolbar({
         <button
           type="button"
           onClick={() => setMeasureOpen((open) => !open)}
-          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-black/5"
+          className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition hover:bg-accent/10"
           aria-expanded={measureOpen}
         >
           <span className="flex items-center gap-3">
@@ -100,7 +100,7 @@ export function CatalogToolbar({
                 <label
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3 transition",
-                    fitMode === "single" ? "border-ink/20 bg-black/75 text-ivory" : "border-ink/10 bg-ivory hover:bg-black/5",
+                    fitMode === "single" ? "border-ink/20 bg-burgundy text-ivory" : "border-ink/10 bg-ivory hover:bg-accent/10",
                   )}
                 >
                   <input type="radio" name="fitMode" value="single" defaultChecked={fitMode === "single"} className="mt-1" />
@@ -114,7 +114,7 @@ export function CatalogToolbar({
                 <label
                   className={cn(
                     "flex cursor-pointer items-start gap-3 rounded-2xl border px-4 py-3 transition",
-                    fitMode === "combo" ? "border-ink/20 bg-black/75 text-ivory" : "border-ink/10 bg-ivory hover:bg-black/5",
+                    fitMode === "combo" ? "border-ink/20 bg-burgundy text-ivory" : "border-ink/10 bg-ivory hover:bg-accent/10",
                   )}
                 >
                   <input type="radio" name="fitMode" value="combo" defaultChecked={fitMode === "combo"} className="mt-1" />
@@ -167,7 +167,7 @@ export function CatalogToolbar({
                 <div className="flex items-end gap-2">
                   <button
                     type="submit"
-                    className="h-11 flex-1 rounded-full bg-black/70 px-4 text-xs font-bold uppercase tracking-[0.14em] text-ivory backdrop-blur-sm transition hover:bg-black/85"
+                    className="h-11 flex-1 rounded-full bg-burgundy px-4 text-xs font-bold uppercase tracking-[0.14em] text-ivory backdrop-blur-sm transition hover:bg-wine"
                   >
                     Ver que cabem
                   </button>
@@ -175,7 +175,7 @@ export function CatalogToolbar({
                     <button
                       type="button"
                       onClick={clearSpace}
-                      className="h-11 rounded-full border border-ink/15 px-3 text-xs font-semibold uppercase tracking-[0.12em] text-taupe transition hover:bg-black/5 hover:text-ink"
+                      className="h-11 rounded-full border border-ink/15 px-3 text-xs font-semibold uppercase tracking-[0.12em] text-taupe transition hover:bg-accent/10 hover:text-ink"
                     >
                       Limpar
                     </button>

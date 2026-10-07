@@ -1,15 +1,15 @@
-"use client";
+﻿"use client";
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Heart, Search, SearchX } from "lucide-react";
 import { motion } from "motion/react";
-import { AddToCartButton } from "@/components/cart/AddToCartButton";
 import { BrandSelect } from "@/components/ui/BrandSelect";
 import { Reveal } from "@/components/ui/Reveal";
 import { BRAND } from "@/lib/brand";
 import { formatBrandPrice } from "@/lib/format";
+import { buildProductWhatsAppUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import type { CartItem } from "@/types";
 
@@ -147,8 +147,8 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                   type="button"
                   onClick={() => setPrice(chip.id)}
                   className={cn(
-                    "rounded-full border border-ink/15 bg-white px-3 py-1.5 text-xs font-bold text-ink transition hover:bg-black/5",
-                    price === chip.id && "border-transparent bg-black/75 text-white hover:bg-black/85",
+                    "rounded-full border border-ink/15 bg-white px-3 py-1.5 text-xs font-bold text-ink transition hover:bg-accent/10",
+                    price === chip.id && "border-transparent bg-burgundy text-white hover:bg-wine",
                   )}
                 >
                   {chip.label}
@@ -166,7 +166,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 rounded-full bg-black/70 px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-black/85"
+              className="mt-6 rounded-full bg-burgundy px-5 py-3 text-sm font-bold text-white backdrop-blur-sm transition hover:bg-wine"
             >
               {catalog.clearFilters}
             </button>
@@ -205,7 +205,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                     <button
                       type="button"
                       className={cn(
-                        "absolute right-4 top-4 z-10 rounded-full bg-white/90 p-3 text-ink shadow-sm backdrop-blur-sm transition hover:bg-black/10",
+                        "absolute right-4 top-4 z-10 rounded-full bg-white/90 p-3 text-ink shadow-sm backdrop-blur-sm transition hover:bg-accent/10",
                         liked && "text-ink",
                       )}
                       aria-label={`Favoritar ${product.item.name}`}
@@ -220,7 +220,7 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                       <Heart className={cn("h-[18px] w-[18px]", liked && "fill-ink")} />
                     </button>
                     {product.sold ? (
-                      <span className="absolute left-4 top-4 z-10 rounded-full bg-black/70 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+                      <span className="absolute left-4 top-4 z-10 rounded-full bg-burgundy px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
                         Vendido
                       </span>
                     ) : null}
@@ -238,11 +238,24 @@ export function FeaturedCuradoria({ products }: { products: CuradoriaCard[] }) {
                       </p>
                     </div>
                     <div className="mt-5">
-                      <AddToCartButton
-                        sold={product.sold}
-                        item={product.item}
-                        className="min-h-0 w-full rounded-full border-0 bg-black/70 py-3 text-sm font-bold normal-case tracking-normal text-white backdrop-blur-sm hover:bg-black/85"
-                      />
+                      {!product.sold ? (
+                        <a
+                          href={buildProductWhatsAppUrl({
+                            name: product.item.name,
+                            slug: product.item.slug,
+                            priceCents: product.item.priceCents,
+                          })}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-burgundy px-4 text-[11px] font-bold uppercase tracking-[0.14em] text-white backdrop-blur-sm transition hover:bg-wine"
+                        >
+                          Comprar pelo WhatsApp
+                        </a>
+                      ) : (
+                        <span className="inline-flex min-h-11 w-full items-center justify-center rounded-full bg-ink/10 px-4 text-[11px] font-bold uppercase tracking-[0.14em] text-taupe">
+                          Indisponível
+                        </span>
+                      )}
                     </div>
                   </div>
                 </motion.article>

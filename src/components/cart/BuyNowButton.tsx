@@ -1,27 +1,24 @@
-"use client";
-
-import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
-import { useCart } from "@/components/cart/CartProvider";
-import type { CartItem } from "@/types";
+import { buildProductWhatsAppUrl } from "@/lib/whatsapp";
 
-export function BuyNowButton({ item, sold }: { item: CartItem; sold?: boolean }) {
-  const { addItem } = useCart();
-  const router = useRouter();
+type WhatsAppProduct = {
+  name: string;
+  slug: string;
+  priceCents: number;
+};
 
+export function BuyNowButton({ item, sold }: { item: WhatsAppProduct; sold?: boolean }) {
   if (sold) return null;
 
   return (
     <Button
-      type="button"
+      href={buildProductWhatsAppUrl(item)}
       variant="ghost"
       className="w-full"
-      onClick={() => {
-        addItem(item);
-        router.push("/checkout");
-      }}
+      target="_blank"
+      rel="noopener noreferrer"
     >
-      Comprar agora
+      Comprar pelo WhatsApp
     </Button>
   );
 }

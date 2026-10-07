@@ -66,7 +66,7 @@ export function AccountBagCards() {
             <p className="mt-2 text-lg font-semibold text-ink">{formatBRL(item.priceCents)}</p>
           </Link>
           <div className="mt-auto flex items-center gap-2 pt-4">
-            <InsightAction href="/checkout">Finalizar</InsightAction>
+            <InsightAction href="/carrinho">Ver sacola</InsightAction>
             <RemoveCartButton onClick={() => removeItem(item.productId)} />
           </div>
         </InsightCard>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { SafeImage } from "@/components/ui/SafeImage";
 import { formatBRL } from "@/lib/format";
+import { buildProductWhatsAppUrl } from "@/lib/whatsapp";
 import { cn } from "@/lib/utils";
 import type { Prisma } from "@prisma/client";
 
@@ -12,11 +13,16 @@ export type ProductCardProduct = Prisma.ProductGetPayload<{
 export function ProductCard({ product }: { product: ProductCardProduct }) {
   const image = product.images[0];
   const sold = product.status !== "AVAILABLE" || product.stock <= 0;
+  const whatsappUrl = buildProductWhatsAppUrl({
+    name: product.name,
+    slug: product.slug,
+    priceCents: product.priceCents,
+  });
 
   return (
-    <article className="group h-full">
-      <Link href={`/produto/${product.slug}`} className="block h-full">
-        <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand shadow-[0_12px_32px_rgba(0,0,0,0.06)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(0,0,0,0.1)]">
+    <article className="group flex h-full flex-col">
+      <Link href={`/produto/${product.slug}`} className="block">
+        <div className="relative aspect-[3/4] overflow-hidden rounded-3xl bg-sand shadow-[0_12px_32px_rgba(89,66,56,0.06)] transition duration-300 group-hover:-translate-y-1 group-hover:shadow-[0_18px_40px_rgba(89,66,56,0.1)]">
           {image ? (
             <SafeImage
               src={image.url}
@@ -27,33 +33,30 @@ export function ProductCard({ product }: { product: ProductCardProduct }) {
             />
           ) : null}
           <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-            {sold ? (
-              <span className="rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-                Vendido
-              </span>
-            ) : null}
-            {product.uniquePiece && !sold ? (
-              <span className="rounded-full bg-black/70 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white backdrop-blur-sm">
-                Exclusivo
-              </span>
-            ) : null}
+            {sold ? <Badge tone="ink">Vendido</Badge> : null}
+            {product.uniquePiece && !sold ? <Badge tone="forest">Exclusivo</Badge> : null}
             {product.stock === 1 && !sold ? <Badge tone="wine">Última unidade</Badge> : null}
           </div>
-          {!sold ? (
-            <span className="absolute inset-x-3 bottom-3 translate-y-4 rounded-full bg-black/70 py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.14em] text-white opacity-0 backdrop-blur-sm transition group-hover:translate-y-0 group-hover:opacity-100">
-              Ver móvel
-            </span>
-          ) : null}
         </div>
         <div className="px-1 pt-3.5">
           <p className="text-xs text-taupe">
             {product.widthCm} × {product.depthCm} × {product.heightCm} cm
           </p>
-          <h3 className="mt-1 text-sm font-bold text-ink">{product.name}</h3>
+          <h3 className="mt-1 font-serif text-base font-semibold text-burgundy">{product.name}</h3>
           <p className="mt-0.5 text-[10px] uppercase tracking-[0.14em] text-taupe">{product.brand}</p>
-          <p className="mt-1.5 text-sm font-bold text-ink">{formatBRL(product.priceCents)}</p>
+          <p className="mt-1.5 text-sm font-bold text-burgundy">{formatBRL(product.priceCents)}</p>
         </div>
       </Link>
+      {!sold ? (
+        <a
+          href={whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-flex min-h-10 w-full items-center justify-center rounded-full bg-burgundy px-4 text-[10px] font-bold uppercase tracking-[0.14em] text-white transition hover:bg-wine"
+        >
+          Comprar pelo WhatsApp
+        </a>
+      ) : null}
     </article>
   );
 }

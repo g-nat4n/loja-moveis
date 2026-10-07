@@ -8,10 +8,12 @@ import { RemoveCartButton } from "@/components/cart/RemoveCartButton";
 import { useCart } from "@/components/cart/CartProvider";
 import { Button } from "@/components/ui/Button";
 import { formatBRL } from "@/lib/format";
+import { buildCartWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CartDrawer() {
   const { items, isOpen, closeCart, removeItem, subtotalCents } = useCart();
   const reduced = useReducedMotion();
+  const whatsappUrl = buildCartWhatsAppUrl(items);
 
   return (
     <AnimatePresence>
@@ -36,10 +38,10 @@ export function CartDrawer() {
             aria-modal="true"
             aria-label="Sacola"
           >
-            <div className="flex items-center justify-between border-b border-gold px-6 py-5">
+            <div className="flex items-center justify-between border-b border-burgundy/20 px-6 py-5">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.15em] text-wine">Sua seleção</p>
-                <h2 className="mt-1 font-serif text-2xl text-ink">Sacola Mareli</h2>
+                <h2 className="mt-1 font-serif text-2xl text-burgundy">Sacola Mareli</h2>
               </div>
               <button type="button" onClick={closeCart} className="p-2 text-forest" aria-label="Fechar">
                 <X className="h-5 w-5" />
@@ -77,9 +79,22 @@ export function CartDrawer() {
                 <span className="text-forest">Subtotal</span>
                 <span className="font-bold text-wine">{formatBRL(subtotalCents)}</span>
               </div>
-              <Button href="/checkout" className="w-full" onClick={closeCart} variant="wine">
-                Finalizar compra
-              </Button>
+              {items.length > 0 ? (
+                <Button
+                  href={whatsappUrl}
+                  className="w-full"
+                  onClick={closeCart}
+                  variant="wine"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Comprar pelo WhatsApp
+                </Button>
+              ) : (
+                <Button href="/produtos" className="w-full" onClick={closeCart} variant="wine">
+                  Ver móveis
+                </Button>
+              )}
               <Link
                 href="/produtos"
                 onClick={closeCart}

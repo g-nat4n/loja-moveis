@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import { StoreShell } from "@/components/layout/StoreShell";
 import { ProductGallery } from "@/components/product/ProductGallery";
 import { ProductCard } from "@/components/product/ProductCard";
+import { ProductCarousel } from "@/components/product/ProductCarousel";
 import { AddToCartButton } from "@/components/cart/AddToCartButton";
-import { ShippingEstimator } from "@/components/product/ShippingEstimator";
 import { Badge } from "@/components/ui/Badge";
 import { getProductBySlug, getRelatedProducts } from "@/services/product.service";
 import { CONDITION_LABELS } from "@/lib/constants";
@@ -70,7 +70,7 @@ export default async function ProductPage({ params }: { params: Params }) {
             {product.stock === 1 && available ? <Badge tone="wine">Última unidade disponível</Badge> : null}
             {!available ? <Badge tone="ink">Vendido</Badge> : null}
           </div>
-          <p className="mt-6 font-serif text-3xl font-semibold text-gold">{formatBRL(product.priceCents)}</p>
+          <p className="mt-6 font-serif text-3xl font-semibold text-burgundy">{formatBRL(product.priceCents)}</p>
           <dl className="mt-8 grid grid-cols-2 gap-4 text-sm">
             <div>
               <dt className="text-[10px] uppercase tracking-[0.16em] text-taupe">Porte</dt>
@@ -134,22 +134,12 @@ export default async function ProductPage({ params }: { params: Params }) {
             {available ? (
               <BuyNowButton
                 item={{
-                  productId: product.id,
                   slug: product.slug,
                   name: product.name,
-                  brand: product.brand,
-                  size: product.size,
                   priceCents: product.priceCents,
-                  imageUrl: product.images[0]?.url ?? null,
-                  uniquePiece: product.uniquePiece,
-                  stock: product.stock,
-                  quantity: 1,
                 }}
               />
             ) : null}
-          </div>
-          <div className="mt-8">
-            <ShippingEstimator />
           </div>
         </div>
       </section>
@@ -158,10 +148,12 @@ export default async function ProductPage({ params }: { params: Params }) {
         <section className="container-main pb-16">
           <p className="eyebrow">Complete o ambiente</p>
           <h2 className="display mt-2 text-3xl">{product.look?.name}</h2>
-          <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-            {lookPieces.map((item) => (
-              <ProductCard key={item.id} product={{ ...item, category: product.category }} />
-            ))}
+          <div className="mt-8 px-2">
+            <ProductCarousel>
+              {lookPieces.map((item) => (
+                <ProductCard key={item.id} product={{ ...item, category: product.category }} />
+              ))}
+            </ProductCarousel>
           </div>
         </section>
       ) : null}
@@ -170,10 +162,12 @@ export default async function ProductPage({ params }: { params: Params }) {
         <section className="container-main pb-24">
           <p className="eyebrow">Mesma categoria</p>
           <h2 className="display mt-2 text-3xl">Outros móveis na mesma direção</h2>
-          <div className="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-            {related.map((item) => (
-              <ProductCard key={item.id} product={item} />
-            ))}
+          <div className="mt-8 px-2">
+            <ProductCarousel>
+              {related.map((item) => (
+                <ProductCard key={item.id} product={item} />
+              ))}
+            </ProductCarousel>
           </div>
         </section>
       ) : null}

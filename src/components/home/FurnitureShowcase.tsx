@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -71,7 +71,7 @@ export function FurnitureShowcase() {
       <div className="mx-auto mt-10 flex max-w-7xl justify-center px-6 lg:px-8">
         <Link
           href="/produtos"
-          className="rounded-full bg-black/70 px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-black/85"
+          className="rounded-full bg-burgundy px-7 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-white backdrop-blur-sm transition hover:bg-wine"
         >
           Ver todos os móveis
         </Link>

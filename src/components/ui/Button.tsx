@@ -2,15 +2,15 @@ import Link, { type LinkProps } from "next/link";
 import { cn } from "@/lib/utils";
 
 const variants = {
-  primary: "rounded-full bg-black/70 text-white backdrop-blur-sm hover:bg-black/85",
-  burgundy: "rounded-full bg-black/80 text-white hover:bg-black/90",
-  gold: "rounded-full bg-black/70 text-white backdrop-blur-sm hover:bg-black/85",
-  wine: "rounded-full bg-black/65 text-white hover:bg-black/80",
+  primary: "rounded-full bg-burgundy text-white hover:bg-wine",
+  burgundy: "rounded-full bg-burgundy text-white hover:bg-wine",
+  gold: "rounded-full bg-burgundy text-white hover:bg-wine",
+  wine: "rounded-full bg-wine text-white hover:bg-gold-deep",
   outline:
-    "rounded-full border border-ink/20 bg-transparent text-ink hover:border-ink/40 hover:bg-black/5",
+    "rounded-full border border-burgundy bg-transparent text-burgundy hover:border-wine hover:bg-accent/10 hover:text-wine",
   ghost:
-    "rounded-full border border-ink/15 bg-transparent text-ink hover:bg-black/5",
-  light: "rounded-full bg-white/90 text-ink hover:bg-white border border-ink/10",
+    "rounded-full border border-burgundy/30 bg-ivory text-burgundy hover:border-wine hover:bg-accent/10 hover:text-wine",
+  light: "rounded-full border border-burgundy/15 bg-white text-burgundy hover:border-wine hover:text-wine",
 };
 
 type Props = {

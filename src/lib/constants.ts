@@ -3,9 +3,7 @@ export const APP_TAGLINE = "Móveis com presença para o espaço que você vive.
 
 export const NAV_LINKS = [
   { href: "/", label: "Início" },
-  { href: "/sobre", label: "Sobre" },
   { href: "/produtos", label: "Móveis" },
-  { href: "/#categorias", label: "Categorias" },
   { href: "/contato", label: "Contato" },
 ] as const;
 
